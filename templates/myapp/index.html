@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+index
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <p>下記のパラメーターをいじってみよう</p>
+    <form action="/recommend" method="POST">
+        <label for="sweet">Sweetness:</label>
+        <input type="range" id="sweet" name="sweet" min="1" max="10"><br><br>
+
+        <label for="bitter">Bitterness:</label>
+        <input type="range" id="bitter" name="bitter" min="1" max="10"><br><br>
+
+        <label for="sour">Sourness:</label>
+        <input type="range" id="sour" name="sour" min="1" max="10"><br><br>
+
+        <label for="mild">Mildness:</label>
+        <input type="range" id="mild" name="mild" min="1" max="10"><br><br>
+
+        <label for="kids">Kids:</label>
+        <input type="checkbox" id="kids" name="kids"><br><br>
+
+        <label for="coffee">Coffee:</label>
+        <input type="checkbox" id="coffee" name="coffee"><br><br>
+
+        <label for="size">Size:</label>
+        <select id="size" name="size">
+            <option value="short">Short</option>
+            <option value="tall">Tall</option>
+            <option value="grande">Grande</option>
+            <option value="venti">Venti</option>
+        </select><br><br>
+
+        <label for="hot_or_ice">Hot or Ice:</label>
+        <select id="hot_or_ice" name="hot_or_ice">
+            <option value="hot">Hot</option>
+            <option value="ice">Ice</option>
+        </select><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    {% endblock %}

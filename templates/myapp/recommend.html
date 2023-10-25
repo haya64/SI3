@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Recommendations
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Recommended Drinks</h2>
+    <ul>
+        {% for drink in drinks %}
+        <li>
+            <strong>{{ drink['drink_name'] }}</strong><br>
+            Sweetness: {{ drink['sweet'] }}<br>
+            Bitterness: {{ drink['bitter'] }}<br>
+            Sourness: {{ drink['sour'] }}<br>
+            Mildness: {{ drink['mild'] }}<br>
+            Kids-friendly: {{ 'Yes' if drink['kids'] else 'No' }}<br>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
