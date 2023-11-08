@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request, redirect, url_for
+from flask import Flask, render_template, request, jsonify, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
@@ -39,6 +39,54 @@ class StarbucksDrinks(db.Model):
 def index():
     return render_template('myapp/index.html')
 
+@app.route('/home')
+def home():
+    return render_template('myapp/home.html')
+
+@app.route('/recommend')
+def recommend():
+    return render_template('myapp/recommend.html')
+
+@app.route('/upload', methods=['POST'])
+def upload_image():
+    data = request.json
+    image_data = data['image']
+
+    if image_data is not None:
+        print('画像受け取ったよ')
+
+    # 画像データの処理
+    # 例: Base64データから画像ファイルを生成、感情分析など
+
+    # 処理結果を返す
+    return jsonify({'message': 'Image received successfully!'})
+
+@app.route('/preferences')
+def preferences():
+    return render_template('myapp/preferences.html')
+
+@app.route('/process_preferences', methods=['POST'])
+def process_preferences():
+    # フォームから嗜好データを取得
+    sweet_preference = request.form.get('sweet')
+    # 他の嗜好データを取得
+
+    # 嗜好に基づいた推薦処理を実行
+
+    return redirect(url_for('recommendation_results'))
+
+@app.route('/recommendation_results')
+def recommendation_results():
+    # ここで推薦処理の結果を取得する（例: データベースから取得または計算する）
+    recommended_drinks = [
+        {'drink_name': 'Caramel Macchiato', 'sweet': 8},
+        # 他の推薦ドリンクを追加
+    ]
+    
+    return render_template('myapp/recommendation_results.html', recommended_drinks=recommended_drinks)
+
+
+
 
 @app.route('/drinks')
 def drinks():
@@ -46,7 +94,7 @@ def drinks():
     return render_template('myapp/drinks.html', drinks=all_drinks)
 
 @app.route('/recommend', methods=['POST'])
-def recommend():
+def rrecommend():
     
     # Get user's preferences from form
     sweet_preference = int(request.form['sweet'])

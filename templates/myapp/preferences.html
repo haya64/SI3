@@ -1,0 +1,20 @@
+<!-- preferences.html -->
+{% extends "layout.html" %}
+
+{% block title %}Select Preferences{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h2>Select Your Preferences</h2>
+    <form action="/process_preferences" method="post">
+        <!-- 嗜好選択フォーム -->
+        <div>
+            <label>Sweetness</label>
+            <input type="number" name="sweet" min="1" max="10">
+        </div>
+        <!-- 他の嗜好選択オプションを追加 -->
+
+        <button type="submit" class="btn btn-primary">Submit Preferences</button>
+    </form>
+</div>
+{% endblock %}
