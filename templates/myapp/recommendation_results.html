@@ -1,0 +1,16 @@
+<!-- recommendation_results.html -->
+{% extends "layout.html" %}
+
+{% block title %}Recommendation Results{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h2>Your Drink Recommendations</h2>
+    <ul>
+        {% for drink in recommended_drinks %}
+        <li>{{ drink.drink_name }} - Sweetness: {{ drink.sweet }}</li>
+        <!-- 他のドリンクの属性を表示 -->
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

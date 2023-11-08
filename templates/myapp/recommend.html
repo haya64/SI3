@@ -1,23 +1,64 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
 
-{% block title %}
-Recommendations
-{% endblock %}
+{% block title %}Camera Permission{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2>Recommended Drinks</h2>
-    <ul>
-        {% for drink in drinks %}
-        <li>
-            <strong>{{ drink['drink_name'] }}</strong><br>
-            Sweetness: {{ drink['sweet'] }}<br>
-            Bitterness: {{ drink['bitter'] }}<br>
-            Sourness: {{ drink['sour'] }}<br>
-            Mildness: {{ drink['mild'] }}<br>
-            Kids-friendly: {{ 'Yes' if drink['kids'] else 'No' }}<br>
-        </li>
-        {% endfor %}
-    </ul>
+<div class="text-center">
+    <h2>Face Analysis for Drink Recommendation</h2>
+    <p>We need your permission to access the camera for capturing your photo.</p>
+
+    <button id="consentButton" class="btn btn-primary">Give Consent</button>
+    <div id="camera" style="display:none;">
+        <video id="video" width="640" height="480" autoplay></video>
+        <button id="snap">Capture Photo</button>
+        <canvas id="canvas" width="640" height="480"></canvas>
+    </div>
 </div>
+
+<script>
+    const consentButton = document.getElementById('consentButton');
+    const cameraDiv = document.getElementById('camera');
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const snap = document.getElementById('snap');
+
+    // ユーザーの同意を得たらカメラを起動
+    consentButton.addEventListener('click', function () {
+        cameraDiv.style.display = 'block';
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch(function (err) {
+                console.log("An error occurred: " + err);
+            });
+    });
+
+    snap.addEventListener('click', function () {
+        const context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0, 640, 480);
+
+        // キャンバスの画像をBase64形式に変換
+        const imageData = canvas.toDataURL('image/png');
+
+        // 画像データをサーバーに送信
+        fetch('/upload', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ image: imageData })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // ここで推薦処理の結果を表示するなどの処理を追加
+                window.location.href = '/preferences';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
 {% endblock %}

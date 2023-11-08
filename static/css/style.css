@@ -1,0 +1,57 @@
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* 背景色を薄い茶色に */
+    color: #333;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.navbar {
+    background-color: #006341;
+}
+
+.nav-link {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #f8f9fa;
+}
+
+.container {
+    flex: 1;
+}
+
+footer {
+    background-color: #362313; /* スターバックスの茶色 */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+h1 {
+    color: #006341;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background-color: #00754a;
+    border-color: #00754a;
+}
+
+.btn-primary:hover {
+    background-color: #005831;
+    border-color: #005831;
+}
