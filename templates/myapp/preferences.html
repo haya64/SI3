@@ -1,11 +1,11 @@
 <!-- preferences.html -->
 {% extends "layout.html" %}
 
-{% block title %}Select Preferences{% endblock %}
+{% block title %}嗜好分析{% endblock %}
 
 {% block content %}
 <div class="text-center">
-    <h2>Select Your Preferences</h2>
+    <h2>あなたの嗜好を分析します</h2>
     <form action="/process_preferences" method="post">
         <!-- 嗜好選択フォーム -->
         <div>
@@ -14,7 +14,7 @@
         </div>
         <!-- 他の嗜好選択オプションを追加 -->
 
-        <button type="submit" class="btn btn-primary">Submit Preferences</button>
+        <button type="submit" class="btn btn-primary">おすすめのドリンクを見る</button>
     </form>
 </div>
 {% endblock %}

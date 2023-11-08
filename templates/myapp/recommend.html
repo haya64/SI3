@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
-{% block title %}Camera Permission{% endblock %}
+{% block title %}表情から感情分析{% endblock %}
 
 {% block content %}
 <div class="text-center">
-    <h2>Face Analysis for Drink Recommendation</h2>
-    <p>We need your permission to access the camera for capturing your photo.</p>
+    <h2>表情からあなたの感情を分析します</h2>
+    <p>あなたの顔写真を撮影します<br>同意する場合は撮影を押してください<br>顔写真は感情分析以外には使用しません</p>
 
-    <button id="consentButton" class="btn btn-primary">Give Consent</button>
+    <button id="consentButton" class="btn btn-primary">撮影</button>
     <div id="camera" style="display:none;">
         <video id="video" width="640" height="480" autoplay></video>
         <button id="snap">Capture Photo</button>

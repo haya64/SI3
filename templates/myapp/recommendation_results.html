@@ -1,11 +1,11 @@
 <!-- recommendation_results.html -->
 {% extends "layout.html" %}
 
-{% block title %}Recommendation Results{% endblock %}
+{% block title %}ドリンク推薦の結果{% endblock %}
 
 {% block content %}
 <div class="text-center">
-    <h2>Your Drink Recommendations</h2>
+    <h2>今のあなたにおすすめのドリンク</h2>
     <ul>
         {% for drink in recommended_drinks %}
         <li>{{ drink.drink_name }} - Sweetness: {{ drink.sweet }}</li>
